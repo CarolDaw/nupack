@@ -65,6 +65,10 @@ RSpec.describe MarkupCalculator do
   
   describe "#calculate_markup" do
     it { is_expected.to respond_to(:calculate_markup)}
+    
+    it "returns a float" do
+      expect(calculator.calculate_markup).to be_a(Float)
+    end
   end
   
   describe "#calculate_flat_markup" do
@@ -163,5 +167,26 @@ RSpec.describe MarkupCalculator do
       end
     end
   end  
+  
+  describe "#get_total_markup" do
+    it { is_expected.to respond_to(:get_total_markup)}
+    
+    it "returns a float" do
+      expect(calculator.get_total_markup).to be_a(Float)
+    end
+        
+    context "get valid total markup" do
+      before do
+	calculator.instance_variable_set("@base_price", 1)
+	calculator.instance_variable_set("@flat_markup", 2)
+	calculator.instance_variable_set("@worker_markup", 3)
+	calculator.instance_variable_set("@materials_markup", 4)
+      end
+      
+      it "returns valid output" do
+	expect(calculator.get_total_markup).to eq(10)
+      end
+    end
+  end
   
 end

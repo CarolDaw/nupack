@@ -29,6 +29,7 @@ class MarkupCalculator
     @flat_price = @base_price + @flat_markup
     calculate_worker_markup(@flat_price)
     calculate_materials_markup(@flat_price)
+    get_total_markup
   end
   
   def calculate_flat_markup(price)
@@ -44,5 +45,9 @@ class MarkupCalculator
       @materials_markup = price * materials_list[@materials.to_sym].to_f/100
     end
   end 
+  
+  def get_total_markup
+    (@base_price + @flat_markup + @worker_markup + @materials_markup)
+  end
   
 end
