@@ -7,5 +7,6 @@ class MarkupCalculator
     @materials = materials
     
     raise ArgumentError.new("Base price must be numeric") unless @base_price.is_a?(Float)
+    raise ArgumentError.new("Worker count must be an integer") unless @worker_count.is_a?(Integer)
   end
 end
