@@ -1,10 +1,13 @@
 require './markup_calculator'
+require 'spec_helper'
 
 RSpec.describe MarkupCalculator do
   subject(:calculator) { MarkupCalculator.new(base_price, worker_count, materials) }
   let(:base_price) {1299.99}
   let(:worker_count) {1}
   let(:materials) {'food'}
+  
+  it_behaves_like "NupackValidator"
   
   it { is_expected.to respond_to(:base_price) }
   it { is_expected.to respond_to(:worker_count) }
@@ -38,17 +41,5 @@ RSpec.describe MarkupCalculator do
       expect { MarkupCalculator.new(base_price, worker_count, materials) }.to raise_error(ArgumentError)
     end
   end  
-  
-  describe "#is_alphabetical?" do
-    it { is_expected.to respond_to(:is_alphabetical?) }
-    
-    it "returns true for a alphabetical string" do
-      expect(subject.is_alphabetical?('abcdefg')).to be_truthy
-    end
-
-    it "returns false for a non alphabetical string" do
-      expect(subject.is_alphabetical?("1000.00")).to be_falsey
-    end
-  end
   
 end

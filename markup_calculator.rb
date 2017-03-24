@@ -1,4 +1,7 @@
+require './modules/nupack_validator'
+
 class MarkupCalculator
+  include NupackValidator
   attr_reader :base_price, :worker_count, :materials
   
   def initialize(base_price, worker_count, materials)
@@ -11,7 +14,4 @@ class MarkupCalculator
     raise ArgumentError.new("Materials must be alphabetical") unless is_alphabetical?(@materials)
   end
   
-  def is_alphabetical?(text)
-    text =~ /^[a-zA-Z]+$/
-  end
 end
