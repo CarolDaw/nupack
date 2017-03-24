@@ -9,6 +9,7 @@ class MarkupCalculator
     @base_price = base_price
     @worker_count = worker_count
     @materials = materials
+    @materials_list = { :drugs => 7.5, :food => 13, :electronics => 2 }
     
     @flat_markup = 0
     @worker_markup = 0
@@ -34,5 +35,11 @@ class MarkupCalculator
   def calculate_worker_markup(price)
     @worker_markup = (price * 0.012 * @worker_count).round(3)
   end
+  
+  def calculate_materials_markup(price)
+    if materials_list.has_key? @materials.to_sym
+      @materials_markup = price * materials_list[@materials.to_sym].to_f/100
+    end
+  end 
   
 end

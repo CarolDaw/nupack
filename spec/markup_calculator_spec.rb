@@ -108,4 +108,60 @@ RSpec.describe MarkupCalculator do
     end
   end
   
+  describe "#calculate_materials_markup" do
+    it { is_expected.to respond_to(:calculate_materials_markup)}
+    
+    context "with pharmaceutical materials" do
+      let(:materials) {"drugs"}
+      before do
+        @initial_value = 1
+        @expected_value = 0.075
+      end
+      
+      it "returns 7.5% increase on input" do 
+        calculator.calculate_materials_markup(@initial_value)
+        expect(calculator.materials_markup).to eq(@expected_value)
+      end
+    end
+    
+    context "with food materials" do
+      let(:materials) {"food"}
+      before do
+        @initial_value = 1
+        @expected_value = 0.13
+      end
+      
+      it "returns 13% increase on input" do 
+        calculator.calculate_materials_markup(@initial_value)
+        expect(calculator.materials_markup).to eq(@expected_value)
+      end
+    end
+    
+    context "with electronic materials" do
+      let(:materials) {"electronics"}
+      before do
+        @initial_value = 1
+        @expected_value = 0.02
+      end
+      
+      it "returns 2% increase on input" do 
+        calculator.calculate_materials_markup(@initial_value)
+        expect(calculator.materials_markup).to eq(@expected_value)
+      end
+    end
+    
+    context "with other materials" do
+      let(:materials) {"books"}
+      before do
+        @initial_value = 1
+        @expected_value = 0
+      end
+      
+      it "returns 0% increase on input" do 
+        calculator.calculate_materials_markup(@initial_value)
+        expect(calculator.materials_markup).to eq(@expected_value)
+      end
+    end
+  end  
+  
 end
