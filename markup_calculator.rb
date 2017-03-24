@@ -23,4 +23,12 @@ class MarkupCalculator
     raise ArgumentError.new("Materials must be alphabetical") unless is_alphabetical?(@materials)
   end
   
+  def calculate_markup
+    calculate_flat_markup(@base_price)
+  end
+  
+  def calculate_flat_markup(price)
+    @flat_markup = price * 0.05
+  end
+  
 end

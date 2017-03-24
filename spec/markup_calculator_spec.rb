@@ -63,4 +63,27 @@ RSpec.describe MarkupCalculator do
     end
   end
   
+  describe "#calculate_markup" do
+    it { is_expected.to respond_to(:calculate_markup)}
+  end
+  
+  describe "#calculate_flat_markup" do
+    it { is_expected.to respond_to(:calculate_flat_markup)}
+
+    context "running a valid calculate_flat_markup" do
+      before do
+        @initial_value = 1
+        @expected_value = 0.05
+      end
+      it "returns 5% increase on input" do         
+        calculator.calculate_flat_markup(@initial_value)
+        expect(calculator.flat_markup).to eq(@expected_value)
+      end
+
+      it "initializes flat markup" do
+        expect { calculator.calculate_flat_markup(@initial_value) }.to change{calculator.flat_markup}.from(0).to(@expected_value)
+      end
+    end
+  end
+  
 end
