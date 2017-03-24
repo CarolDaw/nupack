@@ -26,6 +26,9 @@ class MarkupCalculator
   
   def calculate_markup
     calculate_flat_markup(@base_price)
+    @flat_price = @base_price + @flat_markup
+    calculate_worker_markup(@flat_price)
+    calculate_materials_markup(@flat_price)
   end
   
   def calculate_flat_markup(price)
