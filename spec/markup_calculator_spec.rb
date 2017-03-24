@@ -13,6 +13,12 @@ RSpec.describe MarkupCalculator do
   it { is_expected.to respond_to(:worker_count) }
   it { is_expected.to respond_to(:materials) }
   
+  it { is_expected.to respond_to(:flat_price) }
+  it { is_expected.to respond_to(:flat_markup) }
+  it { is_expected.to respond_to(:worker_markup) }
+  it { is_expected.to respond_to(:materials_markup) }
+  it { is_expected.to respond_to(:materials_list) }
+  
   describe "#initialize" do    
     it "initializes with a base_price" do
       expect(calculator.base_price).to eq(base_price)

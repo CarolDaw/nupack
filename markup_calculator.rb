@@ -3,6 +3,7 @@ require './modules/nupack_validator'
 class MarkupCalculator
   include NupackValidator
   attr_reader :base_price, :worker_count, :materials
+  attr_reader :flat_price, :flat_markup, :worker_markup, :materials_markup, :materials_list
   
   def initialize(base_price, worker_count, materials)
     @base_price = base_price
