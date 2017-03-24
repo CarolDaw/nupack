@@ -32,6 +32,18 @@ RSpec.describe MarkupCalculator do
       expect(calculator.materials).to eq(materials)
     end 
     
+    it "initializes with flat markup" do
+      expect(calculator.flat_markup).to be_zero
+    end 
+        
+    it "initializes with worker markup" do
+      expect(calculator.worker_markup).to be_zero
+    end 
+    
+    it "initializes with materials markup" do
+      expect(calculator.materials_markup).to be_zero
+    end
+    
   end  
   
   describe "#validate!" do

@@ -10,6 +10,10 @@ class MarkupCalculator
     @worker_count = worker_count
     @materials = materials
     
+    @flat_markup = 0
+    @worker_markup = 0
+    @materials_markup = 0
+    
     validate!
   end
   
