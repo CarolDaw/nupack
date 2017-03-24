@@ -9,6 +9,10 @@ class MarkupCalculator
     @worker_count = worker_count
     @materials = materials
     
+    validate!
+  end
+  
+  def validate!
     raise ArgumentError.new("Base price must be numeric") unless @base_price.is_a?(Float)
     raise ArgumentError.new("Worker count must be an integer") unless @worker_count.is_a?(Integer)
     raise ArgumentError.new("Materials must be alphabetical") unless is_alphabetical?(@materials)

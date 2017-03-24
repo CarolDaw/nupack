@@ -24,8 +24,11 @@ RSpec.describe MarkupCalculator do
     
     it "initializes with materials" do
       expect(calculator.materials).to eq(materials)
-    end
+    end 
     
+  end  
+  
+  describe "#validate!" do
     it "raises an error if base_price is not a number" do
       base_price = 'Not a number'
       expect { MarkupCalculator.new(base_price, worker_count, materials) }.to raise_error(ArgumentError)
@@ -40,6 +43,6 @@ RSpec.describe MarkupCalculator do
       materials = 'One2'
       expect { MarkupCalculator.new(base_price, worker_count, materials) }.to raise_error(ArgumentError)
     end
-  end  
+  end
   
 end
