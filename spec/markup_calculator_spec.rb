@@ -86,4 +86,26 @@ RSpec.describe MarkupCalculator do
     end
   end
   
+  describe "#calculate_worker_markup" do
+    it { is_expected.to respond_to(:calculate_worker_markup)}
+    
+    context "running a valid calculate_worker_markup" do
+      subject(:calculator) { MarkupCalculator.new(base_price, worker_count, materials) }
+      let(:worker_count) {3}
+      before do
+        @initial_value = 1
+        @expected_value = 0.036
+      end
+
+      it "returns 1.2% increase on input" do 
+        calculator.calculate_worker_markup(@initial_value)
+        expect(calculator.worker_markup).to eq(@expected_value)
+      end
+
+      it "initializes worker markup" do
+        expect { calculator.calculate_worker_markup(@initial_value) }.to change{calculator.worker_markup}.from(0).to(@expected_value)
+      end
+    end
+  end
+  
 end

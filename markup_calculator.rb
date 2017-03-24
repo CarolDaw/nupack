@@ -31,4 +31,8 @@ class MarkupCalculator
     @flat_markup = price * 0.05
   end
   
+  def calculate_worker_markup(price)
+    @worker_markup = (price * 0.012 * @worker_count).round(3)
+  end
+  
 end
