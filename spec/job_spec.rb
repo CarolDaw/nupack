@@ -12,6 +12,7 @@ RSpec.describe Job do
   it { is_expected.to respond_to(:materials) }
   
   describe "#initialize" do    
+
     it "initializes with a base_price" do
       expect(job.base_price).to eq(base_price)
     end
