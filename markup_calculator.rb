@@ -25,7 +25,7 @@ class MarkupCalculator
   end
   
   def calculate_worker_markup(price)
-    @worker_markup = (price * 0.012 * @job.worker_count).round(3)
+    @worker_markup = (price * MarkupRate::WORKER_RATE.to_f/100 * @job.worker_count).round(3)
   end
   
   def calculate_materials_markup(price)
