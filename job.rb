@@ -1,3 +1,5 @@
+require './modules/nupack_validator'
+
 class Job
   include NupackValidator
   

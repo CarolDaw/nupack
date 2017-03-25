@@ -7,6 +7,8 @@ RSpec.describe Job do
   let(:worker_count) {1}
   let(:materials) {'food'}
   
+  it_behaves_like "NupackValidator"
+  
   it { is_expected.to respond_to(:base_price) }
   it { is_expected.to respond_to(:worker_count) }
   it { is_expected.to respond_to(:materials) }
