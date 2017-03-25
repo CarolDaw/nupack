@@ -21,7 +21,7 @@ class MarkupCalculator
   end
   
   def calculate_flat_markup(price)
-    @flat_markup = price * 0.05
+    @flat_markup = price * MarkupRate::FLAT_RATE.to_f/100
   end
   
   def calculate_worker_markup(price)
