@@ -11,7 +11,6 @@ RSpec.describe MarkupCalculator do
   it { is_expected.to respond_to(:flat_markup) }
   it { is_expected.to respond_to(:worker_markup) }
   it { is_expected.to respond_to(:materials_markup) }
-  it { is_expected.to respond_to(:materials_list) }
   
   describe "#initialize" do    
     it "initializes with job" do

@@ -2,11 +2,10 @@ require './modules/nupack_validator'
 
 class MarkupCalculator
   attr_reader :job
-  attr_reader :flat_price, :flat_markup, :worker_markup, :materials_markup, :materials_list
+  attr_reader :flat_price, :flat_markup, :worker_markup, :materials_markup
   
   def initialize(base_price, worker_count, materials)
     @job = Job.new(base_price, worker_count, materials)
-    @materials_list = { :drugs => 7.5, :food => 13, :electronics => 2 }
     
     @flat_markup = 0
     @worker_markup = 0
@@ -30,8 +29,8 @@ class MarkupCalculator
   end
   
   def calculate_materials_markup(price)
-    if materials_list.has_key? @job.materials.to_sym
-      @materials_markup = price * materials_list[@job.materials.to_sym].to_f/100
+    if MarkupRate::MATERIAL_RATE.has_key? @job.materials.to_sym
+      @materials_markup = price * MarkupRate::MATERIAL_RATE[@job.materials.to_sym].to_f/100
     end
   end 
   
