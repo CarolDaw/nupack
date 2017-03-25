@@ -24,4 +24,21 @@ RSpec.describe Job do
       expect(job.materials).to eq(materials)
     end 
   end
+  
+  describe "#validate!" do
+    it "raises an error if base_price is not a number" do
+      base_price = 'Not a number'
+      expect { MarkupCalculator.new(base_price, worker_count, materials) }.to raise_error(ArgumentError)
+    end
+    
+    it "raises an error if worker_count is not an integer" do
+      worker_count = 'One'
+      expect { MarkupCalculator.new(base_price, worker_count, materials) }.to raise_error(ArgumentError)
+    end
+    
+    it "raises an error if materials is not all alphabetical" do
+      materials = 'One2'
+      expect { MarkupCalculator.new(base_price, worker_count, materials) }.to raise_error(ArgumentError)
+    end
+  end
 end
