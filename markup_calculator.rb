@@ -47,7 +47,7 @@ class MarkupCalculator
   end 
   
   def get_total_markup
-    (@base_price + @flat_markup + @worker_markup + @materials_markup)
+    (@base_price + @flat_markup + @worker_markup + @materials_markup).round(2)
   end
   
 end

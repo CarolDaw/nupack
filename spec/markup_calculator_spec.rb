@@ -173,18 +173,22 @@ RSpec.describe MarkupCalculator do
     
     it "returns a float" do
       expect(calculator.get_total_markup).to be_a(Float)
-    end
+    end 
         
     context "get valid total markup" do
       before do
-	calculator.instance_variable_set("@base_price", 1)
-	calculator.instance_variable_set("@flat_markup", 2)
-	calculator.instance_variable_set("@worker_markup", 3)
-	calculator.instance_variable_set("@materials_markup", 4)
+	calculator.instance_variable_set("@base_price", 1.00)
+	calculator.instance_variable_set("@flat_markup", 2.01)
+	calculator.instance_variable_set("@worker_markup", 3.02)
+	calculator.instance_variable_set("@materials_markup", 4.03)
       end
       
       it "returns valid output" do
-	expect(calculator.get_total_markup).to eq(10)
+	expect(calculator.get_total_markup).to eq(10.06)
+      end
+      
+      it "returns a number to 2 decimal places" do
+	expect(calculator.get_total_markup).to be_within(0.001).of(10.06)
       end
     end
   end
