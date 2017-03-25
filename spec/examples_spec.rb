@@ -19,4 +19,17 @@ RSpec.describe MarkupCalculator do
         expect(calculator.calculate_markup).to eq(@expected_value)
     end
   end
+  
+  context "example2" do
+    let(:worker_count) {1}
+    let(:base_price) {5432.00}
+    let(:materials) {'drugs'}
+    before do
+      @expected_value = 6199.81
+    end
+    
+    it "returns $6,199.81" do         
+        expect(calculator.calculate_markup).to eq(@expected_value)
+    end
+  end
 end
