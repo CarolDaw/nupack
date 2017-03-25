@@ -32,7 +32,7 @@ class MarkupCalculator
   
   def calculate_materials_markup(price)
     if MarkupRate::MATERIAL_RATE.has_key? @job.materials.to_sym
-      @materials_markup = price * MarkupRate::MATERIAL_RATE[@job.materials.to_sym].to_f/100
+      @materials_markup = percentage(price, MarkupRate::MATERIAL_RATE[@job.materials.to_sym])
     end
   end 
   
