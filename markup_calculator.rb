@@ -1,6 +1,8 @@
-require './modules/nupack_validator'
+require './modules/nupack_math'
 
 class MarkupCalculator
+  include NupackMath
+  
   attr_reader :job
   attr_reader :flat_price, :flat_markup, :worker_markup, :materials_markup
   

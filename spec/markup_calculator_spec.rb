@@ -7,6 +7,8 @@ RSpec.describe MarkupCalculator do
   let(:worker_count) {1}
   let(:materials) {'food'}
   
+  it_behaves_like "NupackMath"
+  
   it { is_expected.to respond_to(:flat_price) }
   it { is_expected.to respond_to(:flat_markup) }
   it { is_expected.to respond_to(:worker_markup) }
