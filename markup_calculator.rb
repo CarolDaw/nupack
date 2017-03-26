@@ -16,7 +16,7 @@ class MarkupCalculator
   end
   
   def calculate_markup
-    calculate_flat_markup(@job.base_price)
+    @flat_markup = calculate_flat_markup(@job.base_price)
     calculate_flat_price(@job.base_price)
     calculate_worker_markup(@flat_price)
     calculate_materials_markup(@flat_price)
@@ -24,7 +24,7 @@ class MarkupCalculator
   end
   
   def calculate_flat_markup(price)
-    @flat_markup = percentage(price, MarkupRate::FLAT_RATE)
+    percentage(price, MarkupRate::FLAT_RATE)
   end
   
   def calculate_flat_price(price)

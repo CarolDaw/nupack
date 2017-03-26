@@ -43,6 +43,17 @@ RSpec.describe MarkupCalculator do
     it "returns a float" do
       expect(calculator.calculate_markup).to be_a(Float)
     end
+    
+    context "calculate_flat_markup" do
+      before do
+        @expected_value = 5
+      end      
+
+      it "initializes flat markup" do
+	allow(calculator).to receive(:calculate_flat_markup) { @expected_value }
+        expect { calculator.calculate_markup }.to change{calculator.flat_markup}.from(0).to(@expected_value)
+      end
+    end
   end
   
   describe "#calculate_flat_price" do
@@ -74,13 +85,8 @@ RSpec.describe MarkupCalculator do
         @initial_value = 1
         @expected_value = 0.05
       end
-      it "returns 5% increase on input" do         
-        calculator.calculate_flat_markup(@initial_value)
-        expect(calculator.flat_markup).to eq(@expected_value)
-      end
-
-      it "initializes flat markup" do
-        expect { calculator.calculate_flat_markup(@initial_value) }.to change{calculator.flat_markup}.from(0).to(@expected_value)
+      it "returns 5% increase on input" do 
+        expect(calculator.calculate_flat_markup(@initial_value)).to eq(@expected_value)
       end
     end
   end
