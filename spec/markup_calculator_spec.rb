@@ -54,25 +54,42 @@ RSpec.describe MarkupCalculator do
         expect { calculator.calculate_markup }.to change{calculator.flat_markup}.from(0).to(@expected_value)
       end
     end
+    
+    context "calculate_flat_price" do
+      before do
+        @expected_value = 5
+      end      
+
+      it "initializes flat markup" do
+	allow(calculator).to receive(:calculate_flat_price) { @expected_value }
+        expect { calculator.calculate_markup }.to change{calculator.flat_price}.from(0).to(@expected_value)
+      end
+    end
+    
+    context "calculate_worker_markup" do
+      before do
+        @expected_value = 5
+      end
+
+      it "initializes worker markup" do
+	allow(calculator).to receive(:calculate_worker_markup) { @expected_value }
+        expect { calculator.calculate_markup }.to change{calculator.worker_markup}.from(0).to(@expected_value)
+      end
+    end
   end
   
   describe "#calculate_flat_price" do
     it { is_expected.to respond_to(:calculate_flat_price)}
     
-    context "running a valid calculate_flat_markup" do
+    context "running a valid calculate_flat_price" do
       before do
-	calculator.instance_variable_set("@flat_markup", 1.01)
         @initial_value = 1.00
+	@markup = 1.01
         @expected_value = 2.01	
       end
       
-      it "returns increase input by flat price" do         
-        calculator.calculate_flat_price(@initial_value)
-        expect(calculator.flat_price).to eq(@expected_value)
-      end
-      
-      it "initializes flat price" do
-	  expect { calculator.calculate_flat_price(@initial_value) }.to change{calculator.flat_price}.from(0).to(@expected_value)
+      it "increases value by flat markup" do         
+        expect(calculator.calculate_flat_price(@initial_value, @markup)).to eq(@expected_value)
       end
     end
   end
@@ -95,20 +112,14 @@ RSpec.describe MarkupCalculator do
     it { is_expected.to respond_to(:calculate_worker_markup)}
     
     context "running a valid calculate_worker_markup" do
-      subject(:calculator) { MarkupCalculator.new(base_price, worker_count, materials) }
-      let(:worker_count) {3}
       before do
         @initial_value = 1
+	@worker_count = 3
         @expected_value = 0.036
       end
 
-      it "returns 1.2% increase on input" do 
-        calculator.calculate_worker_markup(@initial_value)
-        expect(calculator.worker_markup).to eq(@expected_value)
-      end
-
-      it "initializes worker markup" do
-        expect { calculator.calculate_worker_markup(@initial_value) }.to change{calculator.worker_markup}.from(0).to(@expected_value)
+      it "returns 1.2% increase on input" do         
+        expect(calculator.calculate_worker_markup(@initial_value, @worker_count)).to eq(@expected_value)
       end
     end
   end
