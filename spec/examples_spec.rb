@@ -1,8 +1,7 @@
-require './markup_calculator'
-require 'spec_helper'
+require 'nupack/markup_calculator'
 
-RSpec.describe MarkupCalculator do
-  subject(:calculator) { MarkupCalculator.new(base_price, worker_count, materials) }
+RSpec.describe Nupack::MarkupCalculator do
+  subject(:calculator) { Nupack::MarkupCalculator.new(base_price, worker_count, materials) }
   let(:base_price) {1299.99}
   let(:worker_count) {1}
   let(:materials) {'food'}

@@ -1,8 +1,8 @@
-require './job'
-require 'spec_helper'
+require 'nupack/markup_calculator'
+require 'nupack/job'
 
-RSpec.describe Job do
-  subject(:job) { Job.new(base_price, worker_count, materials) }
+RSpec.describe Nupack::Job do
+  subject(:job) { Nupack::Job.new(base_price, worker_count, materials) }
   let(:base_price) {1299.99}
   let(:worker_count) {1}
   let(:materials) {'food'}
@@ -31,17 +31,17 @@ RSpec.describe Job do
   describe "#validate!" do
     it "raises an error if base_price is not a number" do
       base_price = 'Not a number'
-      expect { MarkupCalculator.new(base_price, worker_count, materials) }.to raise_error(ArgumentError)
+      expect { Nupack::MarkupCalculator.new(base_price, worker_count, materials) }.to raise_error(ArgumentError)
     end
     
     it "raises an error if worker_count is not an integer" do
       worker_count = 'One'
-      expect { MarkupCalculator.new(base_price, worker_count, materials) }.to raise_error(ArgumentError)
+      expect { Nupack::MarkupCalculator.new(base_price, worker_count, materials) }.to raise_error(ArgumentError)
     end
     
     it "raises an error if materials is not all alphabetical" do
       materials = 'One2'
-      expect { MarkupCalculator.new(base_price, worker_count, materials) }.to raise_error(ArgumentError)
+      expect { Nupack::MarkupCalculator.new(base_price, worker_count, materials) }.to raise_error(ArgumentError)
     end
   end
 end

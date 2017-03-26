@@ -1,4 +1,4 @@
-require './modules/nupack_math'
+require 'nupack/nupack_math'
 
 RSpec.shared_examples "NupackMath" do
 

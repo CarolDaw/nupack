@@ -28,14 +28,14 @@ gem install rspec
 ## Using the Markup Library
 To use the library, simply add the following to the top of your ruby file:
 ```
-require "markup_calculator"
+require "nupack/markup_calculator"
 ```
 
 
 ## To calculate markup
 Initialize the markup_calculator as follows:
 ```
-calculator = MarkupCalculator.new(base_price, worker_count, materials)
+calculator = Nupack::MarkupCalculator.new(base_price, worker_count, materials)
 ```
 It is expected that: 
 * base_price is a float
@@ -54,7 +54,7 @@ It is assumed that all currency considerations are treated externally to the lib
 
 Example: 
 ```
-calculator = MarkupCalculator.new(1299.99, 3, 'food')
+calculator = Nupack::MarkupCalculator.new(1299.99, 3, 'food')
 markup_price = calculator.calculate_markup!
 ```
 
