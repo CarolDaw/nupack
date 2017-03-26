@@ -13,6 +13,7 @@ RSpec.describe MarkupCalculator do
   it { is_expected.to respond_to(:flat_markup) }
   it { is_expected.to respond_to(:worker_markup) }
   it { is_expected.to respond_to(:materials_markup) }
+  it { is_expected.to respond_to(:total_markup) }
   
   describe "#initialize" do    
     it "initializes with job" do
@@ -33,6 +34,10 @@ RSpec.describe MarkupCalculator do
     
     it "initializes with materials markup" do
       expect(calculator.materials_markup).to be_zero
+    end
+    
+    it "initializes with total markup" do
+      expect(calculator.total_markup).to be_zero
     end
     
   end  
@@ -85,6 +90,21 @@ RSpec.describe MarkupCalculator do
       it "initializes materials markup" do
 	allow(calculator).to receive(:calculate_materials_markup) { @expected_value }
         expect { calculator.calculate_markup }.to change{calculator.materials_markup}.from(0).to(@expected_value)
+      end
+    end
+    
+    context "calculate_total_markup" do
+      before do
+        @expected_value = 5
+	allow(calculator).to receive(:calculate_total_markup) { @expected_value }
+      end
+
+      it "initializes total markup" do
+        expect { calculator.calculate_markup }.to change{calculator.total_markup}.from(0).to(@expected_value)
+      end
+      
+      it "returns total markup" do	
+        expect(calculator.calculate_markup).to eq(calculator.total_markup)
       end
     end
   end
@@ -187,28 +207,28 @@ RSpec.describe MarkupCalculator do
     end
   end  
   
-  describe "#get_total_markup" do
-    it { is_expected.to respond_to(:get_total_markup)}
-    
-    it "returns a float" do
-      expect(calculator.get_total_markup).to be_a(Float)
-    end 
+  describe "#calculate_total_markup" do
+    it { is_expected.to respond_to(:calculate_total_markup)} 
         
     context "get valid total markup" do
       before do
-	job = instance_double("Job", :base_price => 1.00)
-	calculator.instance_variable_set("@job", job)
-	calculator.instance_variable_set("@flat_markup", 2.01)
-	calculator.instance_variable_set("@worker_markup", 3.02)
-	calculator.instance_variable_set("@materials_markup", 4.03)
+	@base_price = 1.00
+	@flat_markup = 2.01
+	@worker_markup = 3.02
+        @materials_markup = 4.03
+	@expected_value = 10.06
       end
       
+      it "returns a float" do
+	expect(calculator.calculate_total_markup(@base_price, @flat_markup, @worker_markup, @materials_markup)).to be_a(Float)
+      end 
+      
       it "returns valid output" do
-	expect(calculator.get_total_markup).to eq(10.06)
+	expect(calculator.calculate_total_markup(@base_price, @flat_markup, @worker_markup, @materials_markup)).to eq(@expected_value)
       end
       
       it "returns a number to 2 decimal places" do
-	expect(calculator.get_total_markup).to be_within(0.001).of(10.06)
+	expect(calculator.calculate_total_markup(@base_price, @flat_markup, @worker_markup, @materials_markup)).to be_within(0.001).of(@expected_value)
       end
     end
   end
