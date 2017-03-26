@@ -49,62 +49,50 @@ RSpec.describe MarkupCalculator do
       expect(calculator.calculate_markup!).to be_a(Float)
     end
     
-    context "calculate_flat_markup" do
+    context "calculate methods called from calculate_markup!" do
       before do
-        @expected_value = 5
-      end      
-
-      it "initializes flat markup" do
-	allow(calculator).to receive(:calculate_flat_markup) { @expected_value }
-        expect { calculator.calculate_markup! }.to change{calculator.flat_markup}.from(0).to(@expected_value)
-      end
-    end
-    
-    context "calculate_flat_price" do
-      before do
-        @expected_value = 5
-      end      
-
-      it "initializes flat markup" do
-	allow(calculator).to receive(:calculate_flat_price) { @expected_value }
-        expect { calculator.calculate_markup! }.to change{calculator.flat_price}.from(0).to(@expected_value)
-      end
-    end
-    
-    context "calculate_worker_markup" do
-      before do
-        @expected_value = 5
-      end
-
-      it "initializes worker markup" do
-	allow(calculator).to receive(:calculate_worker_markup) { @expected_value }
-        expect { calculator.calculate_markup! }.to change{calculator.worker_markup}.from(0).to(@expected_value)
-      end
-    end
-    
-    context "calculate_materials_markup" do
-      before do
-        @expected_value = 5
-      end
-
-      it "initializes materials markup" do
-	allow(calculator).to receive(:calculate_materials_markup) { @expected_value }
-        expect { calculator.calculate_markup! }.to change{calculator.materials_markup}.from(0).to(@expected_value)
-      end
-    end
-    
-    context "calculate_total_markup" do
-      before do
-        @expected_value = 5
-	allow(calculator).to receive(:calculate_total_markup) { @expected_value }
-      end
-
-      it "initializes total markup" do
-        expect { calculator.calculate_markup! }.to change{calculator.total_markup}.from(0).to(@expected_value)
+	 @expected_value = 5
+      end 
+      describe "calculate_flat_markup" do
+	it "initializes flat markup" do
+	  allow(calculator).to receive(:calculate_flat_markup) { @expected_value }
+	  expect { calculator.calculate_markup! }.to change{calculator.flat_markup}.from(0).to(@expected_value)
+	end
       end
       
-      it "returns total markup" do	
-        expect(calculator.calculate_markup!).to eq(calculator.total_markup)
+      describe "calculate_flat_price" do
+	it "initializes flat markup" do
+	  allow(calculator).to receive(:calculate_flat_price) { @expected_value }
+	  expect { calculator.calculate_markup! }.to change{calculator.flat_price}.from(0).to(@expected_value)
+	end
+      end
+      
+      describe "calculate_worker_markup" do
+	it "initializes worker markup" do
+	  allow(calculator).to receive(:calculate_worker_markup) { @expected_value }
+	  expect { calculator.calculate_markup! }.to change{calculator.worker_markup}.from(0).to(@expected_value)
+	end
+      end
+      
+      describe "calculate_materials_markup" do
+	it "initializes materials markup" do
+	  allow(calculator).to receive(:calculate_materials_markup) { @expected_value }
+	  expect { calculator.calculate_markup! }.to change{calculator.materials_markup}.from(0).to(@expected_value)
+	end
+      end
+      
+      describe "calculate_total_markup" do
+	before do
+	  allow(calculator).to receive(:calculate_total_markup) { @expected_value }
+	end
+
+	it "initializes total markup" do
+	  expect { calculator.calculate_markup! }.to change{calculator.total_markup}.from(0).to(@expected_value)
+	end
+	
+	it "returns total markup" do	
+	  expect(calculator.calculate_markup!).to eq(calculator.total_markup)
+	end
       end
     end
   end
