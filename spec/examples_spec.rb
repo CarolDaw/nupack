@@ -16,7 +16,7 @@ RSpec.describe MarkupCalculator do
     end
     
     it "returns $1,591.58" do         
-        expect(calculator.calculate_markup).to eq(@expected_value)
+        expect(calculator.calculate_markup!).to eq(@expected_value)
     end
   end
   
@@ -29,7 +29,7 @@ RSpec.describe MarkupCalculator do
     end
     
     it "returns $6,199.81" do         
-        expect(calculator.calculate_markup).to eq(@expected_value)
+        expect(calculator.calculate_markup!).to eq(@expected_value)
     end
   end
   
@@ -42,7 +42,7 @@ RSpec.describe MarkupCalculator do
     end
     
     it "returns $13,707.63" do         
-        expect(calculator.calculate_markup).to eq(@expected_value)
+        expect(calculator.calculate_markup!).to eq(@expected_value)
     end
   end
 end

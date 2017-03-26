@@ -16,7 +16,7 @@ class MarkupCalculator
     @total_markup = 0
   end
   
-  def calculate_markup
+  def calculate_markup!
     @flat_markup = calculate_flat_markup(@job.base_price)
     @flat_price = calculate_flat_price(@job.base_price, @flat_markup)
     @worker_markup = calculate_worker_markup(@flat_price, @job.worker_count)
