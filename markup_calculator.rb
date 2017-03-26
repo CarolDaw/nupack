@@ -19,7 +19,7 @@ class MarkupCalculator
     @flat_markup = calculate_flat_markup(@job.base_price)
     @flat_price = calculate_flat_price(@job.base_price, @flat_markup)
     @worker_markup = calculate_worker_markup(@flat_price, @job.worker_count)
-    calculate_materials_markup(@flat_price)
+    @materials_markup = calculate_materials_markup(@flat_price, @job.materials)
     get_total_markup
   end
   
@@ -35,10 +35,8 @@ class MarkupCalculator
     (percentage(price, MarkupRate::WORKER_RATE) * worker_count).round(3)
   end
   
-  def calculate_materials_markup(price)
-    if MarkupRate::MATERIAL_RATE.has_key? @job.materials.to_sym
-      @materials_markup = percentage(price, MarkupRate::MATERIAL_RATE[@job.materials.to_sym])
-    end
+  def calculate_materials_markup(price, material)
+    MarkupRate::MATERIAL_RATE.has_key?(material.to_sym) ? percentage(price, MarkupRate::MATERIAL_RATE[material.to_sym]) : 0
   end 
   
   def get_total_markup

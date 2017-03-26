@@ -76,6 +76,17 @@ RSpec.describe MarkupCalculator do
         expect { calculator.calculate_markup }.to change{calculator.worker_markup}.from(0).to(@expected_value)
       end
     end
+    
+    context "calculate_materials_markup" do
+      before do
+        @expected_value = 5
+      end
+
+      it "initializes materials markup" do
+	allow(calculator).to receive(:calculate_materials_markup) { @expected_value }
+        expect { calculator.calculate_markup }.to change{calculator.materials_markup}.from(0).to(@expected_value)
+      end
+    end
   end
   
   describe "#calculate_flat_price" do
@@ -128,54 +139,50 @@ RSpec.describe MarkupCalculator do
     it { is_expected.to respond_to(:calculate_materials_markup)}
     
     context "with pharmaceutical materials" do
-      let(:materials) {"drugs"}
       before do
         @initial_value = 1
+	@material = "drugs"
         @expected_value = 0.075
       end
       
-      it "returns 7.5% increase on input" do 
-        calculator.calculate_materials_markup(@initial_value)
-        expect(calculator.materials_markup).to eq(@expected_value)
+      it "returns 7.5% increase on input" do         
+        expect(calculator.calculate_materials_markup(@initial_value, @material)).to eq(@expected_value)
       end
     end
     
     context "with food materials" do
-      let(:materials) {"food"}
       before do
         @initial_value = 1
+	@material = "food"
         @expected_value = 0.13
       end
       
       it "returns 13% increase on input" do 
-        calculator.calculate_materials_markup(@initial_value)
-        expect(calculator.materials_markup).to eq(@expected_value)
+        expect(calculator.calculate_materials_markup(@initial_value, @material)).to eq(@expected_value)
       end
     end
     
     context "with electronic materials" do
-      let(:materials) {"electronics"}
       before do
         @initial_value = 1
+	@material = "electronics"
         @expected_value = 0.02
       end
       
       it "returns 2% increase on input" do 
-        calculator.calculate_materials_markup(@initial_value)
-        expect(calculator.materials_markup).to eq(@expected_value)
+        expect(calculator.calculate_materials_markup(@initial_value, @material)).to eq(@expected_value)
       end
     end
     
     context "with other materials" do
-      let(:materials) {"books"}
       before do
         @initial_value = 1
+	@material = "books"
         @expected_value = 0
       end
       
       it "returns 0% increase on input" do 
-        calculator.calculate_materials_markup(@initial_value)
-        expect(calculator.materials_markup).to eq(@expected_value)
+        expect(calculator.calculate_materials_markup(@initial_value, @material)).to eq(@expected_value)
       end
     end
   end  
