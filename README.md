@@ -5,17 +5,14 @@ The NuPack Markup Calculator is designed to solve the following [exercise](exerc
 ## Getting Started
 This guide explains how to use the NuPack Markup Calculator library.
 
-
-## Built With
+### System Prerequisites
+The following are required to use this library:
 * [Ruby](https://www.ruby-lang.org/) - Coding language
 * [Rspec](http://rspec.info/) - Testing framework
 
-
-### System Prerequisites
-The following installations are required to use this library:
-
-*ruby ~> '2.2.1'
-*rspec ~> '3.5'
+The versions are as follows:
+* ruby ~> '2.2.1'
+* rspec ~> '3.5'
 
 
 ### Installing prerequisites
@@ -55,7 +52,7 @@ A float is output as the total markup.
 
 It is assumed that all currency considerations are treated externally to the library
 
-Use: 
+Example: 
 ```
 calculator = MarkupCalculator.new(1299.99, 3, 'food')
 markup_price = calculator.calculate_markup!
