@@ -1,0 +1,5 @@
+require 'nupack/job.rb'
+require 'nupack/markup_calculator.rb'
+require 'nupack/markup_rate.rb'
+require 'nupack/modules/nupack_validator.rb'
+require 'nupack/modules/nupack_math.rb'

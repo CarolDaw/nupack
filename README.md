@@ -26,9 +26,13 @@ gem install rspec
 
 
 ## Using the Markup Library
-To use the library, copy the lib folder to your own project. If you already have a lib folder, copy the nupack folder inside lib to your own lib folder. Then simply add the following to the top of your ruby file:
+To use the library it can be simply installed as a gem as follows:
 ```
-require "nupack/markup_calculator"
+gem install nupack-1.0.3.gem
+```
+Then require the gem at the top of your ruby file:
+```
+require 'nupack'
 ```
 
 
