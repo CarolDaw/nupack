@@ -9,6 +9,7 @@ class MarkupCalculator
   def initialize(base_price, worker_count, materials)
     @job = Job.new(base_price, worker_count, materials)
     
+    @flat_price = 0
     @flat_markup = 0
     @worker_markup = 0
     @materials_markup = 0    
@@ -16,7 +17,7 @@ class MarkupCalculator
   
   def calculate_markup
     calculate_flat_markup(@job.base_price)
-    @flat_price = @job.base_price + @flat_markup
+    calculate_flat_price(@job.base_price)
     calculate_worker_markup(@flat_price)
     calculate_materials_markup(@flat_price)
     get_total_markup
@@ -24,6 +25,10 @@ class MarkupCalculator
   
   def calculate_flat_markup(price)
     @flat_markup = percentage(price, MarkupRate::FLAT_RATE)
+  end
+  
+  def calculate_flat_price(price)
+    @flat_price = price + @flat_markup
   end
   
   def calculate_worker_markup(price)

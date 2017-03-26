@@ -22,6 +22,10 @@ RSpec.describe MarkupCalculator do
     it "initializes with flat markup" do
       expect(calculator.flat_markup).to be_zero
     end 
+    
+    it "initializes with flat price" do
+      expect(calculator.flat_price).to be_zero
+    end 
         
     it "initializes with worker markup" do
       expect(calculator.worker_markup).to be_zero
@@ -38,6 +42,27 @@ RSpec.describe MarkupCalculator do
     
     it "returns a float" do
       expect(calculator.calculate_markup).to be_a(Float)
+    end
+  end
+  
+  describe "#calculate_flat_price" do
+    it { is_expected.to respond_to(:calculate_flat_price)}
+    
+    context "running a valid calculate_flat_markup" do
+      before do
+	calculator.instance_variable_set("@flat_markup", 1.01)
+        @initial_value = 1.00
+        @expected_value = 2.01	
+      end
+      
+      it "returns increase input by flat price" do         
+        calculator.calculate_flat_price(@initial_value)
+        expect(calculator.flat_price).to eq(@expected_value)
+      end
+      
+      it "initializes flat price" do
+	  expect { calculator.calculate_flat_price(@initial_value) }.to change{calculator.flat_price}.from(0).to(@expected_value)
+      end
     end
   end
   
