@@ -1,4 +1,4 @@
-require 'nupack/nupack_validator'
+require 'nupack/modules/nupack_validator'
 
 RSpec.shared_examples "NupackValidator" do
 

@@ -1,4 +1,4 @@
-require 'nupack/nupack_math'
+require 'nupack/modules/nupack_math'
 
 module Nupack
   class MarkupCalculator

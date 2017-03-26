@@ -1,4 +1,4 @@
-require 'nupack/nupack_validator'
+require 'nupack/modules/nupack_validator'
 
 module Nupack
   class Job
